@@ -1,7 +1,7 @@
 {
   "name": "sawa-wa-plasmo",
   "displayName": "Sawa WA",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sawa WA is a WhatsApp Web extension that helps you manage your chats and messages.",
   "author": "sawajiri",
   "scripts": {

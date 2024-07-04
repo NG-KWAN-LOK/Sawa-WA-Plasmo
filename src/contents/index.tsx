@@ -37,7 +37,7 @@ const SearchButton: FC<PlasmoCSUIProps> = () => {
   })
 
   const [isShowButton, setIsShowButton] = useState<boolean>(false)
-  const [mousePosition, setmMousePosition] = useState({
+  const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0
   })
@@ -53,18 +53,21 @@ const SearchButton: FC<PlasmoCSUIProps> = () => {
     const handleMouseUp = (event: MouseEvent) => {
       const currentSelection = window.getSelection()
 
-      if (
-        event.target instanceof HTMLElement &&
-        !event.target.outerHTML.includes(POP_UP_BUTTON_ID) &&
-        currentSelection.toString().length === 0
-      ) {
-        setIsShowButton(false)
+      if (currentSelection.toString().length === 0) {
+        if (
+          event.target instanceof HTMLElement &&
+          !event.target.outerHTML.includes(POP_UP_BUTTON_ID)
+        ) {
+          setIsShowButton(false)
+        }
         return
       }
 
       setIsShowButton(true)
 
-      setmMousePosition({ x: event.pageX, y: event.pageY })
+      console.log("currentSelection", currentSelection.toString())
+
+      setMousePosition({ x: event.pageX, y: event.pageY })
       setText(currentSelection.toString())
     }
     document.addEventListener("mouseup", handleMouseUp)
@@ -73,7 +76,7 @@ const SearchButton: FC<PlasmoCSUIProps> = () => {
     }
   }, [isSearchTextChecked])
 
-  if (!mousePosition || !isSearchTextChecked) {
+  if (!mousePosition || !isSearchTextChecked || !text) {
     return null
   }
 
