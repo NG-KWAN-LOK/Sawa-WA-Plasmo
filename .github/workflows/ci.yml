@@ -1,0 +1,39 @@
+name: Tagged Release Extension
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    name: Release Web Extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Up Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: NPM Install
+        run: npm install
+
+      - name: Build the extension
+        run: npm run build
+      - name: Package the extension into a zip artifact
+        run: npm run package
+
+      - name: Release To Github
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: build/chrome-mv3-prod.zip
+      # - name: Browser Platform Publish
+      #   uses: PlasmoHQ/bpp@v3
+      #   with:
+      #     keys: ${{ secrets.SUBMIT_KEYS }}
+      #     artifact: build/chrome-mv3-prod.zip
