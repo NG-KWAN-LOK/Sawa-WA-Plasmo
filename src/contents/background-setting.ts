@@ -15,7 +15,7 @@ export const config: PlasmoCSConfig = {
 }
 
 const CHAT_BACKGROUND_CLASS_ID = "[data-asset-chat-background-dark]"
-const CHAT_BACKGROUND_CLASS_ID_2 = "_aigv"
+const CHAT_BACKGROUND_CLASS_ID_2 = "x1hx0egp"
 
 const changeChatBackground = async (imageUrl: string | null) => {
   const chatBackground = document.querySelector(CHAT_BACKGROUND_CLASS_ID)
